@@ -1,9 +1,9 @@
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 public class MainSceneController implements Initializable{
 
@@ -36,6 +37,9 @@ public class MainSceneController implements Initializable{
     @FXML
     private TextField InputCitta;
 
+     @FXML
+    private Label Lettera;
+
    
 
     @Override
@@ -44,42 +48,35 @@ public class MainSceneController implements Initializable{
         Cnome.setCellValueFactory(new PropertyValueFactory<riga, String>("nome"));
         Ccose.setCellValueFactory(new PropertyValueFactory<riga, String>("cose"));
         Ccitta.setCellValueFactory(new PropertyValueFactory<riga, String>("citta"));
-        setupTable();
+        GG.getItems();
     }
 
     @FXML
     void submit(ActionEvent event) {
-        ObservableList<riga> currentTableData = GG.getItems();
+        ObservableList<riga> TT = GG.getItems();
       
 
-        for (riga categoria : currentTableData) {
-                categoria.setNome(InputNome.getText()); 
-                categoria.setCose(InputCose.getText());
-                categoria.setCitta(InputCitta.getText());
+                riga row = new riga("","","");
 
-                GG.setItems(currentTableData);
+                row.setNome(InputNome.getText()); 
+                row.setCose(InputCose.getText());
+                row.setCitta(InputCitta.getText());
+
+                TT.add(row);
+
+                GG.setItems(TT);
                 GG.refresh();
-                break;
-            
-        }
+        
     }
 
-    
-
-    private void setupTable(){
-        riga gg0 = new riga("","hhh","Buddy");
-        riga gg1 = new riga("","Cat","Bella");
-        riga gg2 = new riga("","Bear","Bob");
-        riga gg3 = new riga("","Squid","Laila");
-        GG.getItems().addAll(gg0,gg1,gg2,gg3);
-    }
 
     @FXML
-    void plusRow(ActionEvent event) {
-    ObservableList<riga> TT = GG.getItems();
-
-    riga row = new riga("","","");
-    TT.add(row);
+    void randomChar(ActionEvent event) {
+        Random random = new Random();
+        int randomInt = random.nextInt(26);
+        char randomLetter = (char) ('A' + randomInt);
+       
+        Lettera.setText(String.valueOf(randomLetter));
     
     }
 }
