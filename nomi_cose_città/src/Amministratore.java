@@ -1,85 +1,95 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-
 
 public class Amministratore {
     private static final int NUMERO_CATEGORIE_DA_SCEGLIERE = 5;
-    private static final List<String> TUTTE_LE_CATEGORIE = new ArrayList<>();
-    private List<Giocatore> giocatoriConnessi=new ArrayList<>();
-    private ServerSocket serverSocket;
-
-    public Amministratore(int port) {
-        try {
-            serverSocket = new ServerSocket(port);
-            System.out.println("Server avviato sulla porta " + port);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private List<String> categorieDisponibili;
+    
+    public Amministratore() {
+        // Inizializza tutte le categorie disponibili
+        categorieDisponibili = new ArrayList<>();
+        categorieDisponibili.add("Nomi di persona");
+        categorieDisponibili.add("Cose (oggetti)");
+        categorieDisponibili.add("Città");
+        categorieDisponibili.add("Verbi");
+        categorieDisponibili.add("Animali");
+        categorieDisponibili.add("Frutta");
+        categorieDisponibili.add("Fiori e Piante");
+        categorieDisponibili.add("Cantanti");
+        categorieDisponibili.add("Nazioni");
+        categorieDisponibili.add("Mestieri");
+        categorieDisponibili.add("Personaggi famosi o storici");
     }
 
-    public void accettaGiocatori() {
-        while (true) {
+    // Scegli casualmente cinque categorie
+    public List<String> scegliCategorie() {
+        if (categorieDisponibili.size() < NUMERO_CATEGORIE_DA_SCEGLIERE) {
+            System.out.println("Non ci sono abbastanza categorie disponibili.");
+            return null;
+        }
+        
+        Random random = new Random();
+        List<String> categorieScelte = new ArrayList<>();
+        
+        for (int i = 0; i < NUMERO_CATEGORIE_DA_SCEGLIERE; i++) {
+            int indiceCasuale = random.nextInt(categorieDisponibili.size());
+            String categoriaScelta = categorieDisponibili.get(indiceCasuale);
+            categorieScelte.add(categoriaScelta);
+            categorieDisponibili.remove(indiceCasuale);
+        }
+
+        return categorieScelte;
+    }
+
+    public void avviaGioco(int numGiocatori) {
+        List<Thread> giocatoriThreads = new ArrayList<>();
+        List<String> categorieGiocatore = scegliCategorie();
+
+        if (categorieGiocatore == null) {
+            System.out.println("Impossibile avviare il gioco senza categorie sufficienti.");
+            return;
+        }
+
+        for (int i = 1; i <= numGiocatori; i++) {
+            String nomeGiocatore = "Giocatore " + i;
+            
+            Runnable giocatore = new Giocatore(nomeGiocatore, categorieGiocatore);
+            Thread threadGiocatore = new Thread(giocatore);
+            giocatoriThreads.add(threadGiocatore);
+            threadGiocatore.start();
+        }
+
+        for (Thread thread : giocatoriThreads) {
             try {
-                Socket clientSocket = serverSocket.accept();
-                System.out.println("Nuovo giocatore connesso: " + clientSocket.getInetAddress());
-                GiocatoreClientHandler clientHandler = new GiocatoreClientHandler(clientSocket, this);
-                giocatoriConnessi.add(clientHandler);
-                Thread thread = new Thread(clientHandler);
-                thread.start();
-            } catch (IOException e) {
+                thread.join();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public Amministratore() {
-        // Inizializza tutte le categorie disponibili
-        TUTTE_LE_CATEGORIE.add("Nomi di persona");
-        TUTTE_LE_CATEGORIE.add("Cose (oggetti)");
-        TUTTE_LE_CATEGORIE.add("Città");
-        TUTTE_LE_CATEGORIE.add("Verbi");
-        TUTTE_LE_CATEGORIE.add("Animali");
-        TUTTE_LE_CATEGORIE.add("Frutta");
-        TUTTE_LE_CATEGORIE.add("Fiori e Piante");
-        TUTTE_LE_CATEGORIE.add("Cantanti");
-        TUTTE_LE_CATEGORIE.add("Nazioni");
-        TUTTE_LE_CATEGORIE.add("Mestieri");
-        TUTTE_LE_CATEGORIE.add("Personaggi famosi o storici");
-    }
-    
-    // Scegli casualmente cinque categorie
-    public List<String> scegliCategorie() {
-        List<String> categorieScelte = new ArrayList<>();
-        Random random = new Random();
-        
-        for (int i = 0; i < NUMERO_CATEGORIE_DA_SCEGLIERE; i++) {
-            int indiceCasuale = random.nextInt(TUTTE_LE_CATEGORIE.size());
-            String categoriaScelta = TUTTE_LE_CATEGORIE.remove(indiceCasuale);
-            categorieScelte.add(categoriaScelta);
-        }
-        
-        return categorieScelte;
-    }
-
-    public static void main(String[] args) {
-        int port = 12345;
+    public static void main(String[] args) {   
         Amministratore amministratore = new Amministratore();
-        List<String> categorieScelte = amministratore.scegliCategorie();
-        
-        // Passa le categorie scelte a una funzione griglia o inviale ai client
-        System.out.println("Categorie scelte dall'amministratore:");
-        for (String categoria : categorieScelte) {
-            System.out.println(categoria);
+        amministratore.avviaGioco(3); // Specifica il numero di giocatori
+    }
+}
+
+class Giocatore implements Runnable {
+    private String nome;
+    private List<String> categorie;
+
+    public Giocatore(String nome, List<String> categorie) {
+        this.nome = nome;
+        this.categorie = categorie;
+    }
+
+    @Override
+    public void run() {
+        // Implementa il comportamento del giocatore durante il gioco
+        for (String categoria : categorie) {
+            // Puoi fare quello che vuoi con la categoria scelta
+            System.out.println(nome + " ha scelto la categoria: " + categoria);
         }
-
-    
-
-        
-
     }
 }
