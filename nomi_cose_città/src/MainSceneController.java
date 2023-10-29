@@ -9,10 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-
-
-
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -90,7 +86,7 @@ public class MainSceneController implements Initializable{
         Cnome.setCellValueFactory(new PropertyValueFactory<riga, String>("nome"));
          GG.getColumns().add(Cnome);
 
-        double nuovaLarghezza = GG.getWidth() + 137.0; // Aumenta la larghezza di 100 pixel (puoi personalizzare la dimensione)
+        double nuovaLarghezza = GG.getWidth() + 137.0; 
         GG.setMinWidth(nuovaLarghezza);
         GG.setPrefWidth(nuovaLarghezza);
         GG.setMaxWidth(Double.MAX_VALUE);
@@ -203,9 +199,15 @@ public class MainSceneController implements Initializable{
 
                 riga row = new riga(InputNome.getText(), InputCose.getText(), InputCitta.getText(), InputFrutta.getText());
 
+<<<<<<< Updated upstream
                 row.setNome(InputNome.getText()); 
                 row.setCose(InputCose.getText());
                 row.setcat_3(InputCitta.getText());
+=======
+                row.setCat1(InputNome.getText()); 
+                row.setCat2(InputCose.getText());
+                row.setCat3(InputCitta.getText());
+>>>>>>> Stashed changes
 
                 TT.add(row);
 
