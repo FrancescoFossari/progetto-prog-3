@@ -199,15 +199,9 @@ public class MainSceneController implements Initializable{
 
                 riga row = new riga(InputNome.getText(), InputCose.getText(), InputCitta.getText(), InputFrutta.getText());
 
-<<<<<<< Updated upstream
-                row.setNome(InputNome.getText()); 
-                row.setCose(InputCose.getText());
-                row.setcat_3(InputCitta.getText());
-=======
                 row.setCat1(InputNome.getText()); 
                 row.setCat2(InputCose.getText());
                 row.setCat3(InputCitta.getText());
->>>>>>> Stashed changes
 
                 TT.add(row);
 
