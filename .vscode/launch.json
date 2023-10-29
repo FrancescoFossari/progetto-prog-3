@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Amministratore",
+            "request": "launch",
+            "mainClass": "Amministratore",
+            "projectName": "progetto-prog-3_38f401f7"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "App",
