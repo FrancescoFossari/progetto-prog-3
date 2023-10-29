@@ -205,7 +205,7 @@ public class MainSceneController implements Initializable{
 
                 row.setNome(InputNome.getText()); 
                 row.setCose(InputCose.getText());
-                row.setCitta(InputCitta.getText());
+                row.setcat_3(InputCitta.getText());
 
                 TT.add(row);
 
