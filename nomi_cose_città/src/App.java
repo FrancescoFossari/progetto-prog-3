@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -35,4 +34,3 @@ try {
         launch(args);
     }
 }
-

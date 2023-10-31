@@ -1,4 +1,3 @@
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,21 +13,19 @@ import java.util.Random;
 import java.util.ResourceBundle;
 public class MainSceneController implements Initializable{
 
-
     @FXML
-    private TableView<riga> GG;
+    private TableView<Tabella> GG;
 /* 
     @FXML
-    private TableColumn<riga, String> Cnome;
+    private TableColumn<Tabella, String> Cnome;
 
     @FXML
-    private TableColumn<riga, String> Ccose;
+    private TableColumn<Tabella, String> Ccose;
 
     @FXML
-    private TableColumn<riga, String> Ccitta;
+    private TableColumn<Tabella, String> Ccitta;
 
 */
-
 
 
 
@@ -62,7 +59,6 @@ public class MainSceneController implements Initializable{
 
     
 
-
    int cont = 0;
 
     
@@ -70,9 +66,9 @@ public class MainSceneController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        
-       // Cnome.setCellValueFactory(new PropertyValueFactory<riga, String>("nome"));
-        //Ccose.setCellValueFactory(new PropertyValueFactory<riga, String>("cose"));
-        //Ccitta.setCellValueFactory(new PropertyValueFactory<riga, String>("citta"));
+       // Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
+        //Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cose"));
+        //Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
         GG.getItems();
         GG.setVisible(false);
     }
@@ -82,8 +78,8 @@ public class MainSceneController implements Initializable{
     void colonna1(ActionEvent event) {
 
         String nomeColonna = "Nome";
-         TableColumn<riga, String> Cnome = new TableColumn<>(nomeColonna);
-        Cnome.setCellValueFactory(new PropertyValueFactory<riga, String>("nome"));
+         TableColumn<Tabella, String> Cnome = new TableColumn<>(nomeColonna);
+        Cnome.setCellValueFactory(new PropertyValueFactory<Tabella, String>("nome"));
          GG.getColumns().add(Cnome);
 
         double nuovaLarghezza = GG.getWidth() + 137.0; 
@@ -108,8 +104,8 @@ public class MainSceneController implements Initializable{
     void colonna2(ActionEvent event) {
 
         String nomeColonna = "Cosa";
-         TableColumn<riga, String> Ccose = new TableColumn<>(nomeColonna);
-         Ccose.setCellValueFactory(new PropertyValueFactory<riga, String>("cose"));
+         TableColumn<Tabella, String> Ccose = new TableColumn<>(nomeColonna);
+         Ccose.setCellValueFactory(new PropertyValueFactory<Tabella, String>("cosa"));
          GG.getColumns().add(Ccose);
 
          double nuovaLarghezza = GG.getWidth() + 150.0; 
@@ -131,13 +127,12 @@ public class MainSceneController implements Initializable{
 
     }
 
-
     @FXML
     void colonna3(ActionEvent event) {
 
         String nomeColonna = "Cittá";
-         TableColumn<riga, String> Ccitta = new TableColumn<>(nomeColonna);
-         Ccitta.setCellValueFactory(new PropertyValueFactory<riga, String>("citta"));
+         TableColumn<Tabella, String> Ccitta = new TableColumn<>(nomeColonna);
+         Ccitta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("citta"));
          GG.getColumns().add(Ccitta);
 
          double nuovaLarghezza = GG.getWidth() + 150.0; // Aumenta la larghezza di 100 pixel (puoi personalizzare la dimensione)
@@ -160,13 +155,12 @@ public class MainSceneController implements Initializable{
 
     }
 
-
     @FXML
     void colonna4(ActionEvent event) {
 
         String nomeColonna = "Frutta";
-         TableColumn<riga, String> Cfrutta = new TableColumn<>(nomeColonna);
-         Cfrutta.setCellValueFactory(new PropertyValueFactory<riga, String>("frutta"));
+         TableColumn<Tabella, String> Cfrutta = new TableColumn<>(nomeColonna);
+         Cfrutta.setCellValueFactory(new PropertyValueFactory<Tabella, String>("frutta"));
          GG.getColumns().add(Cfrutta);
 
          double nuovaLarghezza = GG.getWidth() + 150.0; 
@@ -186,23 +180,16 @@ public class MainSceneController implements Initializable{
 
         Frutta.setVisible(false);
 
-
          
 
     }
 
-
     @FXML
     void submit(ActionEvent event) {
-        ObservableList<riga> TT = GG.getItems();
+        ObservableList<Tabella> TT = GG.getItems();
       
 
-                riga row = new riga(InputNome.getText(), InputCose.getText(), InputCitta.getText(), InputFrutta.getText());
-
-                row.setCat1(InputNome.getText()); 
-                row.setCat2(InputCose.getText());
-                row.setCat3(InputCitta.getText());
-
+        Tabella row = new Builder().setNome(InputNome.getText()).setCosa(InputCose.getText()).setCitta(InputCitta.getText()).setFrutta(InputFrutta.getText()).build();
                 TT.add(row);
 
                 GG.setItems(TT);
@@ -210,9 +197,7 @@ public class MainSceneController implements Initializable{
         
     }
 
-
   
-
 
 
     @FXML
@@ -226,4 +211,3 @@ public class MainSceneController implements Initializable{
     }
     
 }
-

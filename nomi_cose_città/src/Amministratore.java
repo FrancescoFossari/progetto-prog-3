@@ -78,39 +78,7 @@ public class Amministratore {
 
     public static void main(String[] args) {   
         Amministratore amministratore = new Amministratore();
-        riga rigaOggetto = new riga(null, null, null, null);
-
-       String[] CSarray = categorieScelte.toArray(new String[categorieScelte.size()]);
-
-for (int i = 0; i < NUMERO_CATEGORIE_DA_SCEGLIERE; i++) {
-    switch (i) {
-        case 0:
-            rigaOggetto.setCat1(CSarray[i]);
-            break;
-        case 1:
-            rigaOggetto.setCat2(CSarray[i]);
-            break;
-        case 2:
-            rigaOggetto.setCat3(CSarray[i]);
-            break;
-        case 3:
-            rigaOggetto.setCat4(CSarray[i]);
-            break;
-        default:
-           
-            break;
-    }
-
-    for (int j = 0; j < NUMERO_CATEGORIE_DA_SCEGLIERE; j++) {
-         System.out.println(CSarray);
-    }
-}
-
        
-        System.out.println("Categorie scelte dall'amministratore:");
-        for (String categoria : amministratore.getCategorieScelte()) {
-            System.out.println(categoria);
-        }
 
         amministratore.avviaGioco(3); 
     }
