@@ -44,19 +44,7 @@ public class Tabella {
         this.frutta = frutta;
     }
 
-    
 
-
-
-    @Override
-    public String toString() {
-        return "riga{" +
-                "nome=" + nome +
-                ", cose='" + cosa + '\'' +
-                ", citta='" + citta + '\'' +
-                ", frutta='" + frutta + '\'' +
-                '}';
-    }
 }
 
 
