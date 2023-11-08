@@ -14,6 +14,7 @@ public class WordSearchGame {
         files.add("dizionario/animali.txt");
         files.add("dizionario/cantanti.txt");
         files.add("dizionario/mestieri.txt");
+        files.add("C:\\Users\\pisac\\OneDrive\\Documenti\\GitHub\\progetto-prog-3\\nomi_cose_città\\src\\dizionario\\nomi.txt");
         
         // Crea strategia di ricerca sequenziale
         SearchStrategy fileSearchStrategy = new SequentialFileSearchStrategy();
