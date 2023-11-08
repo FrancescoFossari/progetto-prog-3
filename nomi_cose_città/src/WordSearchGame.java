@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class WordSearchGame {
     public static void main(String[] args) {
         // Elenco di file da cercare
