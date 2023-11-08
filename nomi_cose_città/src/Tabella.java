@@ -3,7 +3,7 @@ public class Tabella {
     private String nome;
     private String cosa;
     private String citta;
-     private String frutta;
+    private String frutta;
 
     Tabella(Builder builder) {
         this.nome = builder.nome;

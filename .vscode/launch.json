@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "WordSearchGame",
+            "request": "launch",
+            "mainClass": "WordSearchGame",
+            "projectName": "progetto-prog-3_38f401f7"
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "Main",
