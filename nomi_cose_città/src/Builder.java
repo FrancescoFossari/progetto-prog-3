@@ -1,5 +1,6 @@
 
 public class Builder {
+    int tot;
     String nome;
     String cosa;
     String citta;
@@ -7,6 +8,11 @@ public class Builder {
 
 
     public Builder() {
+    }
+
+    public Builder setTot(int tot) {
+        this.tot = tot;
+        return this;
     }
 
     public Builder setNome(String nome) {

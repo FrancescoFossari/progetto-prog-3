@@ -42,11 +42,15 @@ public class MainSceneController implements Initializable{
     
 
    int cont = 0;
+   int punteggio = 0;
+   char LetteraCasuale;
+   boolean ColTot  = false;
    boolean ColNome = false;
    boolean ColCosa = false;
    boolean ColCitta = false;
    boolean ColFrutta = false;
    boolean RandomCharButton = true;
+   TableColumn<Tabella, String> Ctot = new TableColumn<>("TOT");
    TableColumn<Tabella, String> Cnome = new TableColumn<>("Nome");
    TableColumn<Tabella, String> Ccose = new TableColumn<>("Cosa");
    TableColumn<Tabella, String> Ccitta = new TableColumn<>("Cittá");
@@ -251,25 +255,101 @@ public class MainSceneController implements Initializable{
 
     }
 
+
+
+     @FXML
+    void randomChar(ActionEvent event) {
+        Random random = new Random();
+        int randomInt = random.nextInt(26);
+        char randomLetter = (char) ('A' + randomInt);
+        LetteraCasuale = randomLetter;
+       
+        Lettera.setText(String.valueOf(randomLetter));
+        RL.setVisible(false);
+        RandomCharButton = false;
+
+
+    }
+
     @FXML
     void submit(ActionEvent event) {
+        double nuovaLarghezza;
+       
+        if(ColTot==false){
+             
+            Ctot.setCellValueFactory(new PropertyValueFactory<Tabella, String>("tot"));
+            GG.getColumns().add(Ctot);
+            nuovaLarghezza = GG.getWidth() + 150.0; 
+            cont += 1;
+
+            if (cont >= 2) {
+                 GG.setVisible(true);
+             }
+
+            GG.setMinWidth(nuovaLarghezza);
+            GG.setPrefWidth(nuovaLarghezza);
+            GG.setMaxWidth(Double.MAX_VALUE);
+
+             Ctot.setMinWidth(nuovaLarghezza / cont);
+             ColTot = true;
+        }
+
         ObservableList<Tabella> TT = GG.getItems();
       
         Builder builder = new Builder();
 
         if (ColNome) {
              builder.setNome(Campo1.getText());
+            if (Campo1.getText().length() > 0) {
+
+                char primaLetteraInserita = Campo1.getText().charAt(0);
+                
+                if (primaLetteraInserita == LetteraCasuale) {
+                    punteggio += 10;
+                    builder.setTot(punteggio);
+            }
         }
+    }
         if (ColCosa) {
              builder.setCosa(Campo2.getText());
+             if (Campo1.getText().length() > 0) {
+
+                char primaLetteraInserita = Campo2.getText().charAt(0);
+                
+                if (primaLetteraInserita == LetteraCasuale) {
+                    punteggio += 10;
+                    builder.setTot(punteggio);
+            }
         }
+    }
         if (ColCitta) {
              builder.setCitta(Campo3.getText());
+             if (Campo1.getText().length() > 0) {
+
+                char primaLetteraInserita = Campo3.getText().charAt(0);
+                
+                if (primaLetteraInserita == LetteraCasuale) {
+                    punteggio += 10;
+                    builder.setTot(punteggio);
+            }
         }
+    }
         if (ColFrutta) {
              builder.setFrutta(Campo4.getText());
-        }
+             if (Campo1.getText().length() > 0) {
 
+                char primaLetteraInserita = Campo4.getText().charAt(0);
+                
+                if (primaLetteraInserita == LetteraCasuale) {
+                    punteggio += 10;
+                    builder.setTot(punteggio);
+            }
+        }
+    }
+
+    punteggio = 0;
+
+        
 
         Tabella row = builder.build();
 
@@ -284,20 +364,8 @@ public class MainSceneController implements Initializable{
         
     }
 
-  
-
-
-    @FXML
-    void randomChar(ActionEvent event) {
-        Random random = new Random();
-        int randomInt = random.nextInt(26);
-        char randomLetter = (char) ('A' + randomInt);
-       
-        Lettera.setText(String.valueOf(randomLetter));
-        RL.setVisible(false);
-        RandomCharButton = false;
-
-
-    }
-    
 }
+    
+
+
+
