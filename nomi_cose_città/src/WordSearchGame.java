@@ -8,13 +8,14 @@ public class WordSearchGame {
     public static void main(String[] args) {
         // Elenco di file da cercare
         List<String> files = new ArrayList<>();
-        files.add("dizionario/nomi.txt");
-        files.add("dizionario/cose.txt");
-        files.add("dizionario/citta.txt");
-        files.add("dizionario/animali.txt");
-        files.add("dizionario/cantanti.txt");
-        files.add("dizionario/mestieri.txt");
-        files.add("C:\\Users\\pisac\\OneDrive\\Documenti\\GitHub\\progetto-prog-3\\nomi_cose_città\\src\\dizionario\\nomi.txt");
+        files.add("nomi_cose_città/src/dizionario/nomi.txt");
+        files.add("nomi_cose_città/src/dizionario/cose.txt");
+        files.add("nomi_cose_città/src/dizionario/citta.txt");
+        files.add("nomi_cose_città/src/dizionario/cantanti.txt");
+        files.add("nomi_cose_città/src/dizionario/mestieri.txt");
+        files.add("nomi_cose_città/src/dizionario/nomi.txt");
+        files.add("nomi_cose_città/src/dizionario/frutta.txt");
+        files.add("nomi_cose_città/src/dizionario/animali.txt");
         
         // Crea strategia di ricerca sequenziale
         SearchStrategy fileSearchStrategy = new SequentialFileSearchStrategy();
